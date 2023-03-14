@@ -36,13 +36,13 @@ city_code = Seoul
 bizesnmList = []
 lonList = []
 latList = []
-for_total_url = 'http://apis.data.go.kr/B553077/api/open/sdsc2/storeListInDong?divId=ctprvnCd&key=11&indsSclsCd=D03A01&divId=ctprvnCd&numOfRows=100000&pageNo=1&type=xml&serviceKey=%2BJTG2GnVWVXZAxaul97F7f9DHnabKZ5Oiaw5eMiZJ1jGKGxyPSNm89FrSrS9pq5%2FLD5DMiDRMT2JJFp6AnK9eQ%3D%3D'
+for_total_url = 'http://apis.data.go.kr/B553077/api/open/sdsc2/storeListInDong?divId=ctprvnCd&key=11&indsSclsCd=D03A01&divId=ctprvnCd&numOfRows=100000&pageNo=1&type=xml&serviceKey=***'
 total_response = requests.get(for_total_url)
 total_response.raise_for_status()
 soup = BeautifulSoup(total_response.text, 'html.parser')
 total = soup.find('total')
 for i in range(1, 10):
-    url = 'http://apis.data.go.kr/B553077/api/open/sdsc2/storeListInDong?divId=ctprvnCd&key={}&indsSclsCd=D03A01&divId=ctprvnCd&numOfRows=1000&pageNo={}&type=xml&serviceKey=%2BJTG2GnVWVXZAxaul97F7f9DHnabKZ5Oiaw5eMiZJ1jGKGxyPSNm89FrSrS9pq5%2FLD5DMiDRMT2JJFp6AnK9eQ%3D%3D'.format(city_code, i)
+    url = 'http://apis.data.go.kr/B553077/api/open/sdsc2/storeListInDong?divId=ctprvnCd&key={}&indsSclsCd=D03A01&divId=ctprvnCd&numOfRows=1000&pageNo={}&type=xml&serviceKey=***'.format(city_code, i)
     response = requests.get(url)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -157,7 +157,7 @@ final_lat = []
 final_lng = []
 
 for code in kaptCode_list:
-    url = 'http://apis.data.go.kr/1613000/AptBasisInfoService1/getAphusBassInfo?kaptCode={}&numOfRows=1000&pageNo=1&ServiceKey=%2BJTG2GnVWVXZAxaul97F7f9DHnabKZ5Oiaw5eMiZJ1jGKGxyPSNm89FrSrS9pq5%2FLD5DMiDRMT2JJFp6AnK9eQ%3D%3D'.format(code)
+    url = 'http://apis.data.go.kr/1613000/AptBasisInfoService1/getAphusBassInfo?kaptCode={}&numOfRows=1000&pageNo=1&ServiceKey=***'.format(code)
     response = requests.get(url)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -187,7 +187,7 @@ for address in addr_list:
         print('none')
     else:
 
-        gmaps = googlemaps.Client(key='AIzaSyCJV-ePI7fojeb_eeNZmbnzdktl2SozkLI')
+        gmaps = googlemaps.Client(key='***')
         geo_location = gmaps.geocode(address)[0].get('geometry')
 
         lat = geo_location['location']['lat']
